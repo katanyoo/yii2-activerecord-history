@@ -17,5 +17,11 @@
         "psr-4": {
             "katanyoo\\activerecordhistory\\": ""
         }
-    }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/katanyoo/yii2-activerecord-history.git"
+        }
+    ]
 }

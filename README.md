@@ -21,6 +21,11 @@ or add
 
 to the require section of your `composer.json` file.
 
+If you are using DBManager as Manager, you need to run
+
+```
+php yii migrate --migrationPath=@vendor/katanyoo/yii2-activerecord-history/migrations
+```
 
 Usage
 -----
