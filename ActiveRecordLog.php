@@ -35,9 +35,9 @@ class ActiveRecordLog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'model_id', 'created_at', 'updated_at'], 'integer'],
+            [['user_id', 'model_id', 'created_at'], 'integer'],
             [['description', 'old_value', 'new_value'], 'string'],
-            [['created_at', 'updated_at'], 'required'],
+            [['created_at'], 'required'],
             [['action'], 'string', 'max' => 20],
             [['model', 'field'], 'string', 'max' => 64],
         ];
@@ -59,7 +59,6 @@ class ActiveRecordLog extends \yii\db\ActiveRecord
             'old_value' => 'Old Value',
             'new_value' => 'New Value',
             'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
         ];
     }
 }

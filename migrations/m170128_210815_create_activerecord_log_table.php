@@ -26,7 +26,6 @@ class m170128_210815_create_activerecord_log_table extends Migration {
             'old_value' => $this->text(),
             'new_value' => $this->text(),
 			'created_at' => $this->integer()->notNull(),
-			'updated_at' => $this->integer()->notNull(),
 		], $tableOptions);
 	}
 
