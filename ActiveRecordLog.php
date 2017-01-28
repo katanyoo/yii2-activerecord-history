@@ -29,6 +29,11 @@ class ActiveRecordLog extends \yii\db\ActiveRecord
         return 'activerecord_log';
     }
 
+
+    public function getDb() {
+        return Yii::$app->db2;
+    }
+
     /**
      * @inheritdoc
      */
