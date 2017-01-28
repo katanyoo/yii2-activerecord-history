@@ -26,6 +26,12 @@ If you are using DBManager as Manager, you need to run
 ```
 php yii migrate --migrationPath=@vendor/katanyoo/yii2-activerecord-history/migrations
 ```
+or if you want to use another DB, you can add
+
+```
+--db=db2
+```
+
 
 Usage
 -----
@@ -33,4 +39,5 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \katanyoo\activerecordhistory\AutoloadExample::widget(); ?>```
+
+```

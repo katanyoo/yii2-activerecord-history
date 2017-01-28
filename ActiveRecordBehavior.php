@@ -13,8 +13,8 @@ class ActiveRecordBehavior extends Behavior
 	{
 		return [
 			ActiveRecord::EVENT_AFTER_INSERT => 'afterInsert',
-			// ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeUpdate',
-			// ActiveRecord::EVENT_AFTER_UPDATE => 'afterUpdate',
+			ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeUpdate',
+			ActiveRecord::EVENT_AFTER_UPDATE => 'afterUpdate',
 			ActiveRecord::EVENT_AFTER_DELETE => 'afterDelete',
 		];
 	}
@@ -61,7 +61,7 @@ class ActiveRecordBehavior extends Behavior
 		
 		    if ($value != $old) {
 
-		        //$changes = $name . ' ('.$old.') => ('.$value.'), ';
+		        // $changes = $name . ' ('.$old.') => ('.$value.'), ';
 				$path = explode('\\', get_class($this->owner));
 				$md = array_pop($path);
 
@@ -72,6 +72,8 @@ class ActiveRecordBehavior extends Behavior
 		                                . '[' . $this->owner->getPrimaryKey() .'].';
 		        $log->action = 'CHANGE';
 		        $log->model = $md;
+		        $log->old_value = $old;
+		        $log->new_value = $value;
 		        $log->model_id = $this->owner->getPrimaryKey();
 		        $log->field = $name;
 		        $log->user_id = \Yii::$app->user->identity->id;
