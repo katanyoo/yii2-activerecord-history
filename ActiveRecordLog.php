@@ -30,7 +30,7 @@ class ActiveRecordLog extends \yii\db\ActiveRecord
     }
 
 
-    public function getDb() {
+    public static function getDb() {
         return Yii::$app->db2;
     }
 
