@@ -9,6 +9,16 @@ use yii\db\ActiveRecord;
  * ActiveRecord Behavior
  */
 class ActiveRecordBehavior extends Behavior {
+	public $database = 'db2';
+
+	/**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+    }
+
 	public function afterDelete($event) {
 
 		$user = '';
@@ -33,7 +43,7 @@ class ActiveRecordBehavior extends Behavior {
 		$log->field = '';
 		$log->user_id = $user_id;
 		$log->created_at = strtotime('now');
-		$log->save();
+		$log->save(false);
 	}
 
 	public function afterInsert($event) {
@@ -60,7 +70,7 @@ class ActiveRecordBehavior extends Behavior {
 		$log->new_value = print_r($this->owner->attributes, true);
 		$log->user_id = $user_id;
 		$log->created_at = strtotime('now');
-		$log->save();
+		$log->save(false);
 	}
 
 	public function afterUpdate($event) {
@@ -107,7 +117,7 @@ class ActiveRecordBehavior extends Behavior {
 				$log->field = $name;
 				$log->user_id = $user_id;
 				$log->created_at = strtotime('now');
-				$log->save();
+				$log->save(false);
 			}
 		}
 	}
