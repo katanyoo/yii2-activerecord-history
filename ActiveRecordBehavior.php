@@ -44,7 +44,10 @@ class ActiveRecordBehavior extends Behavior {
 		$log->old_value = print_r($this->owner->attributes, true);
 		$log->field = '';
 		$log->user_id = $user_id;
-		$log->ip = \Yii::$app->request->userIP;
+		if (isset(\Yii::$app->request->userIP)) {
+			$log->ip = \Yii::$app->request->userIP;
+		}
+		
 		$log->created_at = strtotime('now');
 		$log->save(false);
 	}
@@ -72,7 +75,9 @@ class ActiveRecordBehavior extends Behavior {
 		$log->field = '';
 		$log->new_value = print_r($this->owner->attributes, true);
 		$log->user_id = $user_id;
-		$log->ip = \Yii::$app->request->userIP;
+		if (isset(\Yii::$app->request->userIP)) {
+			$log->ip = \Yii::$app->request->userIP;
+		}
 		$log->created_at = strtotime('now');
 		$log->save(false);
 	}
@@ -124,7 +129,9 @@ class ActiveRecordBehavior extends Behavior {
 				$log->model_id = $this->owner->getPrimaryKey();
 				$log->field = $name;
 				$log->user_id = $user_id;
-				$log->ip = \Yii::$app->request->userIP;
+				if (isset(\Yii::$app->request->userIP)) {
+					$log->ip = \Yii::$app->request->userIP;
+				}
 				$log->created_at = strtotime('now');
 				$log->save(false);
 			}
