@@ -10,6 +10,7 @@ use yii\db\ActiveRecord;
  */
 class ActiveRecordBehavior extends Behavior {
 	public $database = 'db2';
+	public $ignoreAttributes = [];
 
 	/**
      * @inheritdoc
@@ -40,6 +41,7 @@ class ActiveRecordBehavior extends Behavior {
 		$log->action = 'DELETE';
 		$log->model = $md;
 		$log->model_id = $this->owner->getPrimaryKey();
+		$log->old_value = print_r($this->owner->attributes, true);
 		$log->field = '';
 		$log->user_id = $user_id;
 		$log->created_at = strtotime('now');
@@ -92,6 +94,10 @@ class ActiveRecordBehavior extends Behavior {
 		$oldattributes = $this->owner->getOldAttributes();
 		// compare old and new
 		foreach ($newattributes as $name => $value) {
+			if (in_array($name, $this->ignoreAttributes)) {
+				continue;
+			}
+
 			if (!empty($oldattributes)) {
 				$old = $oldattributes[$name];
 			} else {
