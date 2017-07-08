@@ -89,7 +89,7 @@ class ActiveRecordBehavior extends Behavior {
 	public function beforeUpdate($event) {
 		$user = '';
 		$user_id = 0;
-		if (!isset(\Yii::$app->user)) {
+		if (!isset(\Yii::$app->user) || !isset(\Yii::$app->user->identity)) {
 			$user = 'GUEST';
 		} else {
 			$user = \Yii::$app->user->identity->username;
